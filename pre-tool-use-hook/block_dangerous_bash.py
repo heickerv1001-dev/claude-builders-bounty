@@ -6,6 +6,7 @@ from __future__ import annotations
 import json
 import os
 import re
+import shlex
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -34,7 +35,15 @@ def _has_rm_rf(command: str) -> bool:
 
 
 def _has_git_push_force(command: str) -> bool:
-    return bool(re.search(r"\bgit\s+push\b.*(--force\b|-f\b)", command))
+    try:
+        tokens = shlex.split(command, posix=True)
+    except ValueError:
+        tokens = command.split()
+
+    if len(tokens) < 2 or tokens[0] != "git" or tokens[1] != "push":
+        return False
+
+    return "--force" in tokens or "-f" in tokens
 
 
 def _has_drop_table(command: str) -> bool:
