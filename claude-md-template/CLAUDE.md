@@ -33,6 +33,25 @@ Why:
 - Shared logic stays outside React trees.
 - Database files remain easy to review and version.
 
+Example skeleton:
+
+```text
+app/
+  (marketing)/
+  (app)/
+  api/
+components/
+lib/
+db/
+  migrations/
+  seed/
+```
+
+Why:
+
+- A visible skeleton removes ambiguity when the repo is brand new.
+- Route groups keep marketing and authenticated surfaces separated without extra tooling.
+
 ## Naming Conventions
 
 - Use `kebab-case` for files and folders.
