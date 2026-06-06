@@ -27,6 +27,13 @@ Confirms:
 - bundled source note exists
 - bundled changelog section headings exist
 
+Expected success output:
+
+```text
+Sample changelog verification passed.
+Checked 5 required snippets and section headings.
+```
+
 ### End-to-end project check
 
 ```bash
@@ -37,6 +44,13 @@ Confirms:
 
 - generator help output is available
 - bundled sample verification passes
+
+Expected success output:
+
+```text
+Project verification passed.
+Checked generator help output and bundled sample verification.
+```
 
 ### Generator dry run
 
@@ -49,3 +63,7 @@ Confirms:
 - remote GitHub API mode works
 - the output can be generated from a real repository
 - the resulting sample was written into `samples/CHANGELOG.sample.md`
+
+Expected sample artifact:
+
+- `generate-changelog/samples/CHANGELOG.sample.md`
