@@ -39,3 +39,9 @@ Safe commands still proceed normally, for example:
 ```bash
 echo "hello"
 ```
+
+## Test
+
+```bash
+python -m unittest discover -s pre-tool-use-hook/tests
+```
