@@ -69,10 +69,23 @@ Why:
 - `pnpm test` for unit or integration tests if the project defines them.
 - `pnpm db:migrate` to apply migrations.
 - `pnpm db:seed` only if seed data is part of the project flow.
+- `pnpm db:reset` only when the repo explicitly documents a safe reset flow.
 
 Why:
 
 - One obvious command per job keeps the repo approachable.
+
+## Repo Discovery Order
+
+- Check `package.json` first for the actual package manager and scripts.
+- Inspect `app/` before introducing new route patterns.
+- Inspect `db/` before changing schema or writing SQL.
+- Check `README.md` or existing docs for any project-specific conventions before inventing new ones.
+
+Why:
+
+- Greenfield guidance should still adapt to the repo that exists in front of you.
+- The right conventions are usually already visible in the codebase.
 
 ## Component Patterns
 
@@ -100,6 +113,19 @@ Why:
 
 - Boundary validation prevents UI bugs from becoming data bugs.
 - Structured errors make UI and tests easier to write.
+
+## SQLite Conventions
+
+- Prefer one table per feature area when the schema is still young and the data model is simple.
+- Keep foreign keys explicit and name them after the referenced entity.
+- Store timestamps in UTC.
+- Use `INTEGER PRIMARY KEY AUTOINCREMENT` only when the project already relies on it; otherwise prefer explicit IDs that match the app's needs.
+- Keep seed data minimal and representative.
+
+Why:
+
+- SQLite works best when schema choices stay simple and explicit.
+- UTC timestamps avoid timezone confusion across environments.
 
 ## What We Don't Do
 
